@@ -24,7 +24,7 @@ struct Record {
 
 pub async fn run_database(title: &str, first_name: &str, last_name: &str) -> surrealdb::Result<()> {
     // Connect to the server
-    let db = Surreal::new::<Ws>("127.0.0.1:8000").await?;
+    let db = Surreal::new::<Ws>("0.0.0.0:1101").await?;
 
     // Signin as a namespace, database, or root user
     db.signin(Root {
@@ -34,7 +34,7 @@ pub async fn run_database(title: &str, first_name: &str, last_name: &str) -> sur
     .await?;
 
     // Select a specific namespace / database
-    db.use_ns("test").use_db("test").await?;
+    db.use_ns("airport").use_db("airport").await?;
 
     // Create a new employee with a random id
     let created: Vec<Record> = db
