@@ -4,3 +4,4 @@ a school project where I'll be using Tauri and SurrealDB to create a nice applic
 
 #### This project is using:
 - [Svelte Kit](https://kit.svelte.dev/)
+- [Tauri](https://tauri.app/)
