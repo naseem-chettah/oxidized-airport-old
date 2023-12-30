@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import { invoke } from '@tauri-apps/api/tauri'
+  async function run_surreal() {
+    await invoke('run_surreal', {})
+  }
+</script>
+
+<button on:click={run_surreal}>click me</button>

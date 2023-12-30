@@ -28,10 +28,15 @@ struct Record {
     id: Thing,
 }
 
-#[tokio::main]
 pub async fn run_database() -> surrealdb::Result<()> {
     // Connect to the server
-    let db = Surreal::new::<Ws>("127.0.0.1:8000").await?;
+    let db = match Surreal::new::<Ws>("127.0.0.1:8000").await {
+        Ok(db) => db,
+        Err(err) => {
+            eprintln!("Error connecting to the database: {}", err);
+            return Err(err);
+        }
+    };
 
     // Signin as a namespace, database, or root user
     db.signin(Root {
@@ -74,5 +79,7 @@ pub async fn run_database() -> surrealdb::Result<()> {
         .bind(("table", "person"))
         .await?;
     dbg!(groups);
+
+    eprintln!("Database operations completed successfully.");
     Ok(())
 }
