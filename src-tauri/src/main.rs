@@ -2,13 +2,13 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 #[tauri::command]
-fn run_surreal() {
+fn run_surreal(title: &str, first_name: &str, last_name: &str) {
     // Create a tokio runtime
     let runtime = tokio::runtime::Runtime::new().unwrap();
 
     // Block the runtime and run the asynchronous code
     runtime.block_on(async {
-        if let Err(err) = app::run_database().await {
+        if let Err(err) = app::run_database(title, first_name, last_name).await {
             eprintln!("Error running the database: {}", err);
         }
     });

@@ -11,15 +11,9 @@ struct Name<'a> {
 }
 
 #[derive(Debug, Serialize)]
-struct Person<'a> {
+struct Employee<'a> {
     title: &'a str,
     name: Name<'a>,
-    marketing: bool,
-}
-
-#[derive(Debug, Serialize)]
-struct Responsibility {
-    marketing: bool,
 }
 
 #[derive(Debug, Deserialize)]
@@ -28,15 +22,9 @@ struct Record {
     id: Thing,
 }
 
-pub async fn run_database() -> surrealdb::Result<()> {
+pub async fn run_database(title: &str, first_name: &str, last_name: &str) -> surrealdb::Result<()> {
     // Connect to the server
-    let db = match Surreal::new::<Ws>("127.0.0.1:8000").await {
-        Ok(db) => db,
-        Err(err) => {
-            eprintln!("Error connecting to the database: {}", err);
-            return Err(err);
-        }
-    };
+    let db = Surreal::new::<Ws>("127.0.0.1:8000").await?;
 
     // Signin as a namespace, database, or root user
     db.signin(Root {
@@ -48,38 +36,18 @@ pub async fn run_database() -> surrealdb::Result<()> {
     // Select a specific namespace / database
     db.use_ns("test").use_db("test").await?;
 
-    // Create a new person with a random id
+    // Create a new employee with a random id
     let created: Vec<Record> = db
-        .create("person")
-        .content(Person {
-            title: "Founder & CEO",
+        .create("employee")
+        .content(Employee {
+            title,
             name: Name {
-                first: "Tobie",
-                last: "Morgan Hitchcock",
+                first: first_name,
+                last: last_name,
             },
-            marketing: true,
         })
         .await?;
     dbg!(created);
 
-    // Update a person record with a specific id
-    let updated: Option<Record> = db
-        .update(("person", "jaime"))
-        .merge(Responsibility { marketing: true })
-        .await?;
-    dbg!(updated);
-
-    // Select all people records
-    let people: Vec<Record> = db.select("person").await?;
-    dbg!(people);
-
-    // Perform a custom advanced query
-    let groups = db
-        .query("SELECT marketing, count() FROM type::table($table) GROUP BY marketing")
-        .bind(("table", "person"))
-        .await?;
-    dbg!(groups);
-
-    eprintln!("Database operations completed successfully.");
     Ok(())
 }
