@@ -6,6 +6,7 @@
 
 <style>
   header {
+    background: #eee;
     padding: 20px;
   }
   h1 {
