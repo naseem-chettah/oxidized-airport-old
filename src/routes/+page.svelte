@@ -3,25 +3,26 @@
   import Header from "../lib/components/Header.svelte";
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
+  import CreateItemForm from "../lib/components/CreateItemForm.svelte";
 
   //tabs
-  let items = ["Passengers", "Flights", "Airports"];
-  let activeItem = "Passengers";
+  let tabs = ["Passengers", "Flights", "Airports"];
+  let activeTab = "Passengers";
 
   const tabChange = (e) => {
-    activeItem = e.detail;
+    activeTab = e.detail;
   }
 </script>
 
 <Header />
 <main>
-  <Tabs {activeItem} {items} on:tabChange={tabChange} />
-  {#if activeItem === 'Passengers'}
-    <p>this is the list of Passengers</p>
-  {:else if activeItem === 'Flights'}
-    <p>this is the list of Flights</p>
-  {:else if activeItem === 'Airports'}
-    <p>this is the list of Airports</p>
+  <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
+  {#if activeTab === 'Passengers'}
+    <CreateItemForm {activeTab} />
+  {:else if activeTab === 'Flights'}
+    <CreateItemForm {activeTab} />
+  {:else if activeTab === 'Airports'}
+    <CreateItemForm {activeTab} />
   {/if}
 </main>
 <Footer />
