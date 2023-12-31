@@ -16,6 +16,13 @@
 <Header />
 <main>
   <Tabs {activeItem} {items} on:tabChange={tabChange} />
+  {#if activeItem === 'Passengers'}
+    <p>this is the list of Passengers</p>
+  {:else if activeItem === 'Flights'}
+    <p>this is the list of Flights</p>
+  {:else if activeItem === 'Airports'}
+    <p>this is the list of Airports</p>
+  {/if}
 </main>
 <Footer />
 
