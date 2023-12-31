@@ -20,7 +20,7 @@
         <input type="text" id={columnName} bind:value={newField[columnName]} />
       {:else if columnType === "date"}
         <input type="date" id={columnName} bind:value={newField[columnName]} />
-      {:else if columnType === "datetime"}
+      {:else if columnType === "datetime-local"}
         <input
           type="datetime-local"
           id={columnName}
