@@ -22,7 +22,7 @@
     },
     {
       "airport name": "text",
-      "city": "text",
+      city: "text",
     },
   ];
 
