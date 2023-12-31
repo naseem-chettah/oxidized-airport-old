@@ -9,20 +9,37 @@
   let tabs = ["Passengers", "Flights", "Airports"];
   let activeTab = "Passengers";
 
+  //data
+  let data = [
+    {
+      "first name": "text",
+      "last name": "text",
+      "date of birth": "date",
+    },
+    {
+      "departure time": "datetime",
+      "arrival time": "datetime",
+    },
+    {
+      "airport name": "text",
+      "city": "text",
+    },
+  ];
+
   const tabChange = (e) => {
     activeTab = e.detail;
-  }
+  };
 </script>
 
 <Header />
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
-  {#if activeTab === 'Passengers'}
-    <CreateItemForm {activeTab} />
-  {:else if activeTab === 'Flights'}
-    <CreateItemForm {activeTab} />
-  {:else if activeTab === 'Airports'}
-    <CreateItemForm {activeTab} />
+  {#if activeTab === "Passengers"}
+    <CreateItemForm {activeTab} {data} {tabs} />
+  {:else if activeTab === "Flights"}
+    <CreateItemForm {activeTab} {data} {tabs} />
+  {:else if activeTab === "Airports"}
+    <CreateItemForm {activeTab} {data} {tabs} />
   {/if}
 </main>
 <Footer />

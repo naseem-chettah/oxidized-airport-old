@@ -1,21 +1,18 @@
 <script>
+  export let tabs;
   export let activeTab;
+  export let data;
 </script>
 
 <form>
   <h3>Create a new {activeTab}</h3>
-  <div class="form-field">
-    <label for="first-name">{activeTab} first field:</label>
-    <input type="text" id="first-name">
-  </div>
-  <div class="form-field">
-    <label for="last-name">{activeTab} second field:</label>
-    <input type="text" id="last-name">
-  </div>
-  <div class="form-field">
-    <label for="date-of-birth">{activeTab} third field:</label>
-    <input type="date" id="date-of-birth">
-  </div>
+
+  {#each Object.entries(data[tabs.indexOf(activeTab)]) as [columnName, columnType]}
+    <div class="form-field">
+      <label for={columnName}>{columnName}:</label>
+      <input type={columnType} id="column" />
+    </div>
+  {/each}
 </form>
 
 <style>
