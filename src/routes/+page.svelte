@@ -17,8 +17,8 @@
       "date of birth": "date",
     },
     {
-      "departure time": "datetime",
-      "arrival time": "datetime",
+      "departure time": "datetime-local",
+      "arrival time": "datetime-local",
     },
     {
       "airport name": "text",
@@ -35,11 +35,11 @@
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
   {#if activeTab === "Passengers"}
-    <CreateItemForm {activeTab} {data} {tabs} />
+    <CreateItemForm {tabs} {activeTab} {data} />
   {:else if activeTab === "Flights"}
-    <CreateItemForm {activeTab} {data} {tabs} />
+    <CreateItemForm {tabs} {activeTab} {data} />
   {:else if activeTab === "Airports"}
-    <CreateItemForm {activeTab} {data} {tabs} />
+    <CreateItemForm {tabs} {activeTab} {data} />
   {/if}
 </main>
 <Footer />
