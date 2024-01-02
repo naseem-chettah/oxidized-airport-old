@@ -1,4 +1,5 @@
 <script>
+  import Button from "./Button.svelte";
   export let tabs;
   export let activeTab;
   export let data;
@@ -31,6 +32,7 @@
       {/if}
     </div>
   {/each}
+  <Button inverse="false">submit</Button>
 </form>
 
 <style>
@@ -44,7 +46,7 @@
     margin: 18px auto;
   }
 
-  input{
+  input {
     width: 100%;
     border-radius: 6px;
   }
