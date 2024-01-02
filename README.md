@@ -1,4 +1,4 @@
-# Oxidized Airport
+# The Oxidized Airport
 ![](static/images/airplane.png)
 a school project where I'll be using Tauri and SurrealDB to create a nice application to book flights and airport stuff.
 
