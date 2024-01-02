@@ -16,7 +16,7 @@
 <style>
   .card-list {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: repeat(4, 2fr);
     grid-gap: 20px;
   }
 </style>
