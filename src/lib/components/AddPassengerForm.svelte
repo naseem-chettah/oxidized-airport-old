@@ -32,8 +32,8 @@
     }
 
     if (valid) {
-      let passenger = { ...fields, id: Math.random() };
-      dispatch('add', passenger);
+      let passenger = { ...fields, id: Math.floor(Math.random() * 10) };
+      dispatch("add", passenger);
     }
   };
 </script>
