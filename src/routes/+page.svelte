@@ -9,16 +9,33 @@
   let tabs = ["Passengers", "Flights", "Airports"];
   let activeTab = "Passengers";
 
+  //passenger
+  let passengers = [
+    {
+      id: 1,
+      first_name: 'seth',
+      last_name: 'ossidian',
+      date_of_birth: '2003-12-31'
+    },
+  ];
+
   const tabChange = (e) => {
     activeTab = e.detail;
   };
+
+  const handleAddPassenger = (e) => {
+    const passenger = e.detail;
+    passengers = [ passenger, ...passengers];
+    console.log(passengers);
+    // activeTab = "Passenger";
+  }
 </script>
 
 <Header />
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
   {#if activeTab === "Passengers"}
-    <AddPassengerForm />
+    <AddPassengerForm on:add={handleAddPassenger} />
   {:else if activeTab === "Flights"}
     <p>nth here yet</p>
   {:else if activeTab === "Airports"}
