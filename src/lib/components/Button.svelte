@@ -3,7 +3,7 @@
   export let inverse = false;
 </script>
 
-<button class={type} class:inverse={inverse}>
+<button class={type} class:inverse>
   <slot />
 </button>
 

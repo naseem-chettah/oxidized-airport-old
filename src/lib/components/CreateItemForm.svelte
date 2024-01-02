@@ -1,5 +1,7 @@
 <script>
   import Button from "./Button.svelte";
+  import Input from "./Input.svelte";
+
   export let tabs;
   export let activeTab;
   export let data;
@@ -18,11 +20,11 @@
     <div class="form-field">
       <label for={columnName}>{columnName}:</label>
       {#if columnType === "text"}
-        <input type="text" id={columnName} bind:value={newField[columnName]} />
+        <Input type="text" id={columnName} bind:value={newField[columnName]} />
       {:else if columnType === "date"}
-        <input type="date" id={columnName} bind:value={newField[columnName]} />
+        <Input type="date" id={columnName} bind:value={newField[columnName]} />
       {:else if columnType === "datetime-local"}
-        <input
+        <Input
           type="datetime-local"
           id={columnName}
           bind:value={newField[columnName]}
@@ -32,7 +34,7 @@
       {/if}
     </div>
   {/each}
-  <Button inverse="false">submit</Button>
+  <Button>submit</Button>
 </form>
 
 <style>
