@@ -4,6 +4,7 @@
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
   import AddPassengerForm from "../lib/components/AddPassengerForm.svelte";
+  import CardList from "../lib/components/CardList.svelte";
 
   //tabs
   let tabs = ["Passengers", "Flights", "Airports"];
@@ -13,9 +14,9 @@
   let passengers = [
     {
       id: 1,
-      first_name: 'seth',
-      last_name: 'ossidian',
-      date_of_birth: '2003-12-31'
+      first_name: "seth",
+      last_name: "ossidian",
+      date_of_birth: "2003-12-31",
     },
   ];
 
@@ -25,19 +26,19 @@
 
   const handleAddPassenger = (e) => {
     const passenger = e.detail;
-    passengers = [ passenger, ...passengers];
+    passengers = [passenger, ...passengers];
     console.log(passengers);
-    // activeTab = "Passenger";
-  }
+    activeTab = "Passengers";
+  };
 </script>
 
 <Header />
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
   {#if activeTab === "Passengers"}
-    <AddPassengerForm on:add={handleAddPassenger} />
+    <CardList cards={passengers} />
   {:else if activeTab === "Flights"}
-    <p>nth here yet</p>
+    <AddPassengerForm on:add={handleAddPassenger} />
   {:else if activeTab === "Airports"}
     <p>nth here yet</p>
   {/if}
