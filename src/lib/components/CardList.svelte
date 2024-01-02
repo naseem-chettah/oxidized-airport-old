@@ -1,5 +1,7 @@
 <script>
+  import Button from "./Button.svelte";
   import CardDetails from "./CardDetails.svelte";
+
   export let cards;
   $: total = cards.length;
 </script>
@@ -10,13 +12,17 @@
     <div>
       <CardDetails {card} />
     </div>
+  {:else}
+    no passengers left :/
   {/each}
 </div>
+
+<Button>Add</Button>
 
 <style>
   .card-list {
     display: grid;
-    grid-template-columns: repeat(4, 2fr);
+    grid-template-columns: repeat(3, 2fr);
     grid-gap: 20px;
   }
 </style>

@@ -38,31 +38,44 @@
   };
 </script>
 
-<form on:submit|preventDefault={submitHandle}>
-  <h4>Add a new passenger</h4>
-  <div class="form-field">
-    <label for="first-name">first name:</label>
-    <input type="text" id="first-name" bind:value={fields.first_name} />
-    <div class="error">{errors.first_name}</div>
-  </div>
-  <div class="form-field">
-    <label for="last-name">last name:</label>
-    <input type="text" id="last-name" bind:value={fields.last_name} />
-    <div class="error">{errors.last_name}</div>
-  </div>
-  <div class="form-field">
-    <label for="date-of-birth">date of birth:</label>
-    <input type="date" id="date-of-birth" bind:value={fields.date_of_birth} />
-    <div class="error">{errors.date_of_birth}</div>
-  </div>
-  <Button>Submit</Button>
-</form>
+<div class="back-drop">
+  <form on:submit|preventDefault={submitHandle}>
+    <h4>Add a new passenger</h4>
+    <div class="form-field">
+      <label for="first-name">first name:</label>
+      <input type="text" id="first-name" bind:value={fields.first_name} />
+      <div class="error">{errors.first_name}</div>
+    </div>
+    <div class="form-field">
+      <label for="last-name">last name:</label>
+      <input type="text" id="last-name" bind:value={fields.last_name} />
+      <div class="error">{errors.last_name}</div>
+    </div>
+    <div class="form-field">
+      <label for="date-of-birth">date of birth:</label>
+      <input type="date" id="date-of-birth" bind:value={fields.date_of_birth} />
+      <div class="error">{errors.date_of_birth}</div>
+    </div>
+    <Button>Submit</Button>
+  </form>
+</div>
 
 <style>
+  .back-drop {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
   form {
-    max-width: 400px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    width: 40%;
     margin: 0 auto;
     text-align: center;
+    background: #fff;
   }
 
   .form-field {
@@ -70,7 +83,7 @@
   }
 
   input {
-    width: 100%;
+    width: 60%;
     border: 0;
     border-radius: 6px;
     padding: 8px 12px;

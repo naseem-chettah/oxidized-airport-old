@@ -38,7 +38,7 @@
   {#if activeTab === "Passengers"}
     <CardList cards={passengers} />
   {:else if activeTab === "Flights"}
-    <AddPassengerForm on:add={handleAddPassenger} />
+    <p>nth here yet</p>
   {:else if activeTab === "Airports"}
     <p>nth here yet</p>
   {/if}
