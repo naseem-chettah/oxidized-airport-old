@@ -1,8 +1,9 @@
 <script>
+  export let id;
   export let type = "text";
 </script>
 
-<input {type} />
+<input {id} {type}/>
 
 <style>
   input {

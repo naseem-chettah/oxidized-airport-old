@@ -1,5 +1,6 @@
 <script>
   import Button from "./Button.svelte";
+  import Input from "./Input.svelte";
 
   export let tabs;
   export let activeTab;
@@ -7,10 +8,8 @@
 
   let newField = {};
   let newFielderrors = {};
-  let valid = false;
 
   const handleSubmit = () => {
-    valid = true;
     console.log(newField);
   };
 </script>
@@ -22,11 +21,11 @@
     <div class="form-field">
       <label for={columnName}>{columnName}:</label>
       {#if columnType === "text"}
-        <input type="text" id={columnName} bind:value={newField[columnName]} />
+        <Input type="text" id={columnName} bind:value={newField[columnName]} />
       {:else if columnType === "date"}
-        <input type="date" id={columnName} bind:value={newField[columnName]} />
+        <Input type="date" id={columnName} bind:value={newField[columnName]} />
       {:else if columnType === "datetime-local"}
-        <input
+        <Input
           type="datetime-local"
           id={columnName}
           bind:value={newField[columnName]}
@@ -52,11 +51,7 @@
 
   input {
     width: 100%;
-    border: 0;
     border-radius: 6px;
-    padding: 8px 12px;
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
-    outline: none;
   }
 
   label {
