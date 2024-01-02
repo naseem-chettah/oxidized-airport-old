@@ -3,28 +3,11 @@
   import Header from "../lib/components/Header.svelte";
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
-  import CreateItemForm from "../lib/components/CreateItemForm.svelte";
+  import AddPassengerForm from "../lib/components/AddPassengerForm.svelte";
 
   //tabs
   let tabs = ["Passengers", "Flights", "Airports"];
   let activeTab = "Passengers";
-
-  //data
-  let data = [
-    {
-      "first name": "text",
-      "last name": "text",
-      "date of birth": "date",
-    },
-    {
-      "departure time": "datetime-local",
-      "arrival time": "datetime-local",
-    },
-    {
-      "airport name": "text",
-      city: "text",
-    },
-  ];
 
   const tabChange = (e) => {
     activeTab = e.detail;
@@ -35,11 +18,11 @@
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
   {#if activeTab === "Passengers"}
-    <CreateItemForm {tabs} {activeTab} {data} />
+    <AddPassengerForm />
   {:else if activeTab === "Flights"}
-    <CreateItemForm {tabs} {activeTab} {data} />
+    <p>nth here yet</p>
   {:else if activeTab === "Airports"}
-    <CreateItemForm {tabs} {activeTab} {data} />
+    <p>nth here yet</p>
   {/if}
 </main>
 <Footer />
