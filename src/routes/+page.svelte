@@ -4,7 +4,8 @@
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
   import CardList from "../lib/components/CardList.svelte";
-  import AddPassengerForm from "../lib/components/AddPassengerForm.svelte";
+  import PassengerForm from "../lib/components/PassengerForm.svelte";
+  import FormView from "../lib/components/FormView.svelte";
 
   //tabs
   let tabs = ["Passengers", "Flights", "Airports"];
@@ -32,14 +33,14 @@
 
   const pushPassenger = (e) => {
     passengers = [e.detail, ...passengers];
+    hideAddPassenger = !hideAddPassenger;
   };
 </script>
 
-<AddPassengerForm
-  hidden={hideAddPassenger}
-  on:pushPassenger={pushPassenger}
-  on:add={toggleAddPassenger}
-/>
+<FormView hidden={hideAddPassenger} on:add={toggleAddPassenger}>
+  <PassengerForm on:pushPassenger={pushPassenger} />
+</FormView>
+
 <Header />
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
