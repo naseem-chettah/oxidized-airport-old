@@ -7,19 +7,11 @@
   import PassengerForm from "../lib/components/PassengerForm.svelte";
   import FormView from "../lib/components/FormView.svelte";
 
+  import PassengersStore from "../stores/PassengersStore";
+
   //tabs
   let tabs = ["Passengers", "Flights", "Airports"];
   let activeTab = "Passengers";
-
-  //passenger
-  let passengers = [
-    {
-      id: 1,
-      first_name: "seth",
-      last_name: "ossidian",
-      date_of_birth: "2003-12-31",
-    },
-  ];
 
   let hideAddPassenger = true;
 
@@ -32,7 +24,7 @@
   };
 
   const pushPassenger = (e) => {
-    passengers = [e.detail, ...passengers];
+    $PassengersStore = [e.detail, ...$PassengersStore];
     hideAddPassenger = !hideAddPassenger;
   };
 </script>
@@ -45,7 +37,7 @@
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
   {#if activeTab === "Passengers"}
-    <CardList cards={passengers} on:add={toggleAddPassenger} />
+    <CardList on:add={toggleAddPassenger} />
   {:else if activeTab === "Flights"}
     <p>nth here yet</p>
   {:else if activeTab === "Airports"}

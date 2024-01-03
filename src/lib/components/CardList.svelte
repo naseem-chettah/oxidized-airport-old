@@ -1,17 +1,17 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import PassengersStore from "../../stores/PassengersStore";
   import Button from "./Button.svelte";
   import CardDetails from "./CardDetails.svelte";
 
   const dispatch = createEventDispatcher();
 
-  export let cards;
-  $: total = cards.length;
+  $: total = $PassengersStore.length;
 </script>
 
 <p>total of passengers: {total}</p>
 <div class="card-list">
-  {#each cards as card}
+  {#each $PassengersStore as card}
     <div>
       <CardDetails {card} />
     </div>
