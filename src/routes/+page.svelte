@@ -4,6 +4,7 @@
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
   import CardList from "../lib/components/CardList.svelte";
+    import AddPassengerForm from "../lib/components/AddPassengerForm.svelte";
 
   //tabs
   let tabs = ["Passengers", "Flights", "Airports"];
@@ -19,20 +20,24 @@
     },
   ];
 
+  let hideAddPassenger = true;
+
+  const toggleAddPassenger = () => {
+    console.log('toggled');
+    hideAddPassenger = !hideAddPassenger;
+  }
+
   const tabChange = (e) => {
     activeTab = e.detail;
   };
-
-  const dummyFunc = () => {
-    console.log('dummy function has been fired');
-  }
 </script>
 
+<AddPassengerForm hidden={hideAddPassenger} />
 <Header />
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
   {#if activeTab === "Passengers"}
-    <CardList cards={passengers} on:add={dummyFunc} />
+    <CardList cards={passengers} on:add={toggleAddPassenger} />
   {:else if activeTab === "Flights"}
     <p>nth here yet</p>
   {:else if activeTab === "Airports"}
