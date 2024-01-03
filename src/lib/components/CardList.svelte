@@ -1,7 +1,8 @@
 <script>
+  import { scale } from "svelte/transition";
+  import { flip } from "svelte/animate";
   import { createEventDispatcher } from "svelte";
   import PassengersStore from "../../stores/PassengersStore";
-  import Button from "./Button.svelte";
   import CardDetails from "./CardDetails.svelte";
 
   const dispatch = createEventDispatcher();
@@ -11,15 +12,19 @@
 
 <p>total of passengers: {total}</p>
 <div class="card-list">
-  {#each $PassengersStore as card}
-    <div>
+  {#each $PassengersStore as card (card.id)}
+    <div out:scale|local animate:flip={{ duration: 500 }}>
       <CardDetails {card} />
     </div>
-  {:else}
-    no passengers left :/
   {/each}
+  <div>
+    <CardDetails
+      on:click={() => {
+        dispatch("add");
+      }}
+    />
+  </div>
 </div>
-<Button on:click={() => dispatch("add")}>Add</Button>
 
 <style>
   .card-list {

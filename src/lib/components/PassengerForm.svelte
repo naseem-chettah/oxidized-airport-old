@@ -43,7 +43,7 @@
 </script>
 
 <form on:submit|preventDefault={submitHandle}>
-  <h4>Add a new passenger</h4>
+ <h4>Add a new passenger</h4>
   <div class="form-field">
     <label for="first-name">first name:</label>
     <input type="text" id="first-name" bind:value={fields.first_name} />
@@ -59,17 +59,17 @@
     <input type="date" id="date-of-birth" bind:value={fields.date_of_birth} />
     <div class="error">{errors.date_of_birth}</div>
   </div>
-  <Button>Submit</Button>
+  <Button type={'secondary'}>Submit</Button>
 </form>
 
 <style>
   form {
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
     width: 40%;
     margin: 5% auto;
-    text-align: center;
     background: #fff;
+    text-align: center;
   }
 
   .form-field {
@@ -91,7 +91,6 @@
   }
 
   .error {
-    font-weight: bold;
     font-size: 12px;
     color: red;
   }
