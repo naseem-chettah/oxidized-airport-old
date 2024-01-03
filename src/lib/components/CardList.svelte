@@ -1,29 +1,25 @@
 <script>
-  import { scale } from "svelte/transition";
-  import { flip } from "svelte/animate";
   import { createEventDispatcher } from "svelte";
-  import PassengersStore from "../../stores/PassengersStore";
   import CardDetails from "./CardDetails.svelte";
 
   const dispatch = createEventDispatcher();
 
-  $: total = $PassengersStore.length;
+  export let items;
+  export let cards;
+
+  $: total = cards.length;
 </script>
 
-<p>total of passengers: {total}</p>
+<p>total of {items} : {total}</p>
 <div class="card-list">
-  {#each $PassengersStore as card (card.id)}
-    <div out:scale|local animate:flip={{ duration: 500 }}>
-      <CardDetails {card} />
-    </div>
+  {#each cards as card (card.id)}
+    <CardDetails {card} />
   {/each}
-  <div>
-    <CardDetails
-      on:click={() => {
-        dispatch("add");
-      }}
-    />
-  </div>
+  <CardDetails
+    on:click={() => {
+      dispatch("add");
+    }}
+  />
 </div>
 
 <style>

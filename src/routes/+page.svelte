@@ -3,38 +3,21 @@
   import Header from "../lib/components/Header.svelte";
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
-  import CardList from "../lib/components/CardList.svelte";
-  import PassengerForm from "../lib/components/PassengerForm.svelte";
-  import FormView from "../lib/components/FormView.svelte";
+  import Passengers from "./Passengers.svelte";
 
-  //tabs
   let tabs = ["Passengers", "Flights", "Airports"];
   let activeTab = "Passengers";
-
-  let hideAddPassenger = true;
-
-  const toggleAddPassenger = () => {
-    hideAddPassenger = !hideAddPassenger;
-  };
 
   const tabChange = (e) => {
     activeTab = e.detail;
   };
-
-  const pushPassenger = (e) => {
-    hideAddPassenger = !hideAddPassenger;
-  };
 </script>
-
-<FormView hidden={hideAddPassenger} on:add={toggleAddPassenger}>
-  <PassengerForm on:pushPassenger={pushPassenger} />
-</FormView>
 
 <Header />
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
   {#if activeTab === "Passengers"}
-    <CardList on:add={toggleAddPassenger} />
+    <Passengers />
   {:else if activeTab === "Flights"}
     <p>nth here yet</p>
   {:else if activeTab === "Airports"}
@@ -47,5 +30,12 @@
   main {
     max-width: 960px;
     margin: 40px auto;
+  }
+
+  .shadow {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.2);
   }
 </style>

@@ -1,12 +1,17 @@
 import { writable } from 'svelte/store';
 
 const PassengersStore = writable([
-    {
-      id: 1,
-      first_name: "seth",
-      last_name: "ossidian",
-      date_of_birth: "2003-12-31",
-    },
+  {
+    id: 1,
+    firstName: "seth",
+    lastName: "ossidian",
+    dateOfBirth: "2003-12-31",
+    gender: "male",
+    phoneNubmer: "+213559352980",
+    email: "setheris@tuta.io",
+    nationality: "DZ",
+    passportNumber: "1101",
+  },
 ])
 
 export default PassengersStore;

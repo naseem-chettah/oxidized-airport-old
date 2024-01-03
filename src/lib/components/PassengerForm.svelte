@@ -1,35 +1,57 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+
   import PassengersStore from "../../stores/PassengersStore";
+
   import Button from "./Button.svelte";
 
-  let fields = { first_name: "", last_name: "", date_of_birth: "" };
-  let errors = { first_name: "", last_name: "", date_of_birth: "" };
+  let fields = {
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    gender: "",
+    phoneNumber: "",
+    email: "",
+    nationality: "",
+    passportNumber: "",
+  };
+
+  let errors = {
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    gender: "",
+    phoneNumber: "",
+    email: "",
+    nationality: "",
+    passportNumber: "",
+  };
+
   let valid = false;
-  const dispatch = createEventDispatcher();
 
   const submitHandle = () => {
     valid = true;
 
-    if (fields.first_name.trim().length < 2) {
+    if (fields.firstName.trim().length < 2) {
       valid = false;
-      errors.first_name = "too short";
+      errors.firstName = "too short";
     } else {
-      errors.first_name = "";
+      errors.firstName = "";
     }
 
-    if (fields.last_name.trim().length < 2) {
+    if (fields.lastName.trim().length < 2) {
       valid = false;
-      errors.last_name = "too short";
+      errors.lastName = "too short";
     } else {
-      errors.last_name = "";
+      errors.lastName = "";
     }
 
-    if (fields.date_of_birth.trim().length < 10) {
+    if (fields.dateOfBirth.trim().length < 10) {
       valid = false;
-      errors.date_of_birth = "not valid";
+      errors.dateOfBirth = "not valid";
     } else {
-      errors.date_of_birth = "";
+      errors.dateOfBirth = "";
     }
 
     if (valid) {
@@ -43,23 +65,29 @@
 </script>
 
 <form on:submit|preventDefault={submitHandle}>
- <h4>Add a new passenger</h4>
+  <h4>Add a new passenger</h4>
   <div class="form-field">
     <label for="first-name">first name:</label>
-    <input type="text" id="first-name" bind:value={fields.first_name} />
-    <div class="error">{errors.first_name}</div>
+    <input type="text" id="first-name" bind:value={fields.firstName} />
+    <div class="error">{errors.firstName}</div>
   </div>
   <div class="form-field">
     <label for="last-name">last name:</label>
-    <input type="text" id="last-name" bind:value={fields.last_name} />
-    <div class="error">{errors.last_name}</div>
+    <input type="text" id="last-name" bind:value={fields.lastName} />
+    <div class="error">{errors.lastName}</div>
   </div>
   <div class="form-field">
     <label for="date-of-birth">date of birth:</label>
-    <input type="date" id="date-of-birth" bind:value={fields.date_of_birth} />
-    <div class="error">{errors.date_of_birth}</div>
+    <input type="date" id="date-of-birth" bind:value={fields.dateOfBirth} />
+    <div class="error">{errors.dateOfBirth}</div>
   </div>
-  <Button type={'secondary'}>Submit</Button>
+  <div class="form-field">
+    <label for="gender">gender:</label>
+    <input type="radio" id="gender" value="male" bind:group={fields.gender} /> Male
+    <input type="radio" id="gender" value="female" bind:group={fields.gender} /> Female
+    <div class="error">{errors.gender}</div>
+  </div>
+  <Button type={"secondary"}>Submit</Button>
 </form>
 
 <style>
