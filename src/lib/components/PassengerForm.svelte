@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import PassengersStore from "../../stores/PassengersStore";
   import Button from "./Button.svelte";
 
   let fields = { first_name: "", last_name: "", date_of_birth: "" };
@@ -33,7 +34,10 @@
 
     if (valid) {
       let passenger = { ...fields, id: Math.floor(Math.random() * 10) };
-      dispatch("pushPassenger", passenger);
+      PassengersStore.update((currentPassengers) => {
+        return [passenger, ...currentPassengers];
+      });
+      dispatch("pushPassenger");
     }
   };
 </script>

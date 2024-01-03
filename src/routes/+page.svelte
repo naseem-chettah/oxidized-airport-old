@@ -7,8 +7,6 @@
   import PassengerForm from "../lib/components/PassengerForm.svelte";
   import FormView from "../lib/components/FormView.svelte";
 
-  import PassengersStore from "../stores/PassengersStore";
-
   //tabs
   let tabs = ["Passengers", "Flights", "Airports"];
   let activeTab = "Passengers";
@@ -24,7 +22,6 @@
   };
 
   const pushPassenger = (e) => {
-    $PassengersStore = [e.detail, ...$PassengersStore];
     hideAddPassenger = !hideAddPassenger;
   };
 </script>
