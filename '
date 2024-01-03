@@ -1,5 +1,4 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import Button from "./Button.svelte";
 
   export let hidden;
@@ -7,7 +6,10 @@
   let fields = { first_name: "", last_name: "", date_of_birth: "" };
   let errors = { first_name: "", last_name: "", date_of_birth: "" };
   let valid = false;
-  const dispatch = createEventDispatcher();
+
+  const hide = () => {
+    hidden = !hidden;
+  }
 
   const submitHandle = () => {
     valid = true;
@@ -35,14 +37,13 @@
 
     if (valid) {
       let passenger = { ...fields, id: Math.floor(Math.random() * 10) };
-      dispatch("pushPassenger", passenger);
-      dispatch("add");
+      console.log(passenger);
     }
   };
 </script>
 
 {#if !hidden}
-  <div class="back-drop" on:click|self={() => dispatch("add")}>
+  <div class="back-drop" on:click={hide}>
     <form on:submit|preventDefault={submitHandle}>
       <h4>Add a new passenger</h4>
       <div class="form-field">

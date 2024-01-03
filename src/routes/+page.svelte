@@ -4,7 +4,7 @@
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
   import CardList from "../lib/components/CardList.svelte";
-    import AddPassengerForm from "../lib/components/AddPassengerForm.svelte";
+  import AddPassengerForm from "../lib/components/AddPassengerForm.svelte";
 
   //tabs
   let tabs = ["Passengers", "Flights", "Airports"];
@@ -23,16 +23,23 @@
   let hideAddPassenger = true;
 
   const toggleAddPassenger = () => {
-    console.log('toggled');
     hideAddPassenger = !hideAddPassenger;
-  }
+  };
 
   const tabChange = (e) => {
     activeTab = e.detail;
   };
+
+  const pushPassenger = (e) => {
+    passengers = [e.detail, ...passengers];
+  };
 </script>
 
-<AddPassengerForm hidden={hideAddPassenger} />
+<AddPassengerForm
+  hidden={hideAddPassenger}
+  on:pushPassenger={pushPassenger}
+  on:add={toggleAddPassenger}
+/>
 <Header />
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
