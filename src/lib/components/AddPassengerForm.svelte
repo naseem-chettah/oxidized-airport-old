@@ -1,8 +1,8 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import Button from "./Button.svelte";
 
-  let dispatch = createEventDispatcher();
+  export let hidden;
+
   let fields = { first_name: "", last_name: "", date_of_birth: "" };
   let errors = { first_name: "", last_name: "", date_of_birth: "" };
   let valid = false;
@@ -33,32 +33,38 @@
 
     if (valid) {
       let passenger = { ...fields, id: Math.floor(Math.random() * 10) };
-      dispatch("add", passenger);
+      console.log(passenger);
     }
   };
 </script>
 
-<div class="back-drop">
-  <form on:submit|preventDefault={submitHandle}>
-    <h4>Add a new passenger</h4>
-    <div class="form-field">
-      <label for="first-name">first name:</label>
-      <input type="text" id="first-name" bind:value={fields.first_name} />
-      <div class="error">{errors.first_name}</div>
-    </div>
-    <div class="form-field">
-      <label for="last-name">last name:</label>
-      <input type="text" id="last-name" bind:value={fields.last_name} />
-      <div class="error">{errors.last_name}</div>
-    </div>
-    <div class="form-field">
-      <label for="date-of-birth">date of birth:</label>
-      <input type="date" id="date-of-birth" bind:value={fields.date_of_birth} />
-      <div class="error">{errors.date_of_birth}</div>
-    </div>
-    <Button>Submit</Button>
-  </form>
-</div>
+{#if !hidden}
+  <div class="back-drop">
+    <form on:submit|preventDefault={submitHandle}>
+      <h4>Add a new passenger</h4>
+      <div class="form-field">
+        <label for="first-name">first name:</label>
+        <input type="text" id="first-name" bind:value={fields.first_name} />
+        <div class="error">{errors.first_name}</div>
+      </div>
+      <div class="form-field">
+        <label for="last-name">last name:</label>
+        <input type="text" id="last-name" bind:value={fields.last_name} />
+        <div class="error">{errors.last_name}</div>
+      </div>
+      <div class="form-field">
+        <label for="date-of-birth">date of birth:</label>
+        <input
+          type="date"
+          id="date-of-birth"
+          bind:value={fields.date_of_birth}
+        />
+        <div class="error">{errors.date_of_birth}</div>
+      </div>
+      <Button>Submit</Button>
+    </form>
+  </div>
+{/if}
 
 <style>
   .back-drop {
@@ -70,10 +76,9 @@
 
   form {
     padding: 10px;
-    margin: 20px;
     border-radius: 10px;
     width: 40%;
-    margin: 0 auto;
+    margin: 5% auto;
     text-align: center;
     background: #fff;
   }

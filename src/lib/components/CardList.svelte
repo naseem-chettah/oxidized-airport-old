@@ -4,6 +4,10 @@
 
   export let cards;
   $: total = cards.length;
+
+  const addNew = () => {
+    console.log("this one is working");
+  };
 </script>
 
 <p>total of passengers: {total}</p>
@@ -17,7 +21,7 @@
   {/each}
 </div>
 
-<Button>Add</Button>
+<Button on:click={addNew}>Add</Button>
 
 <style>
   .card-list {

@@ -3,7 +3,6 @@
   import Header from "../lib/components/Header.svelte";
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
-  import AddPassengerForm from "../lib/components/AddPassengerForm.svelte";
   import CardList from "../lib/components/CardList.svelte";
 
   //tabs
@@ -22,13 +21,6 @@
 
   const tabChange = (e) => {
     activeTab = e.detail;
-  };
-
-  const handleAddPassenger = (e) => {
-    const passenger = e.detail;
-    passengers = [passenger, ...passengers];
-    console.log(passengers);
-    activeTab = "Passengers";
   };
 </script>
 
