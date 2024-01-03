@@ -22,13 +22,17 @@
   const tabChange = (e) => {
     activeTab = e.detail;
   };
+
+  const dummyFunc = () => {
+    console.log('dummy function has been fired');
+  }
 </script>
 
 <Header />
 <main>
   <Tabs {activeTab} {tabs} on:tabChange={tabChange} />
   {#if activeTab === "Passengers"}
-    <CardList cards={passengers} />
+    <CardList cards={passengers} on:add={dummyFunc} />
   {:else if activeTab === "Flights"}
     <p>nth here yet</p>
   {:else if activeTab === "Airports"}
