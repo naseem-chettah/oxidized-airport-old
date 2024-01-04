@@ -13,8 +13,7 @@
 {#if card != "plus"}
   <div class="card">
     <div>
-      <h3>Passenger {card.id}</h3>
-      <p><b>full name:</b> {card.firstName} {card.lastName}</p>
+      <h3>{card.firstName} {card.lastName}</h3>
       <p><b>date of birth:</b> {card.dateOfBirth} <b>gender:</b> {card.gender}</p>
     </div>
     <div style="text-align: right">

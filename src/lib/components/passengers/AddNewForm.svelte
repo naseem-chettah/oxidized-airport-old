@@ -7,14 +7,6 @@
 
   import Button from "../../shared/Button.svelte";
 
-  let nationalities = [
-    { code: "", name: "Select nationality" },
-    { code: "US", name: "United States" },
-    { code: "CA", name: "Canada" },
-    { code: "GB", name: "United Kingdom" },
-    { code: "AU", name: "Australia" },
-  ];
-
   let fields = {
     firstName: "",
     lastName: "",
