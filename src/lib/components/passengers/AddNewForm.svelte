@@ -2,9 +2,18 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
-  import PassengersStore from "../../stores/PassengersStore";
+  import PassengersStore from "../../../stores/PassengersStore";
+  import Nationalities from "../../../stores/Nationalities";
 
-  import Button from "./Button.svelte";
+  import Button from "../../shared/Button.svelte";
+
+  let nationalities = [
+    { code: "", name: "Select nationality" },
+    { code: "US", name: "United States" },
+    { code: "CA", name: "Canada" },
+    { code: "GB", name: "United Kingdom" },
+    { code: "AU", name: "Australia" },
+  ];
 
   let fields = {
     firstName: "",
@@ -59,7 +68,7 @@
       PassengersStore.update((currentPassengers) => {
         return [passenger, ...currentPassengers];
       });
-      dispatch("pushPassenger");
+      dispatch("hideForm");
     }
   };
 </script>
@@ -83,28 +92,68 @@
   </div>
   <div class="form-field">
     <label for="gender">gender:</label>
-    <input type="radio" id="gender" value="male" bind:group={fields.gender} /> Male
-    <input type="radio" id="gender" value="female" bind:group={fields.gender} /> Female
+    <input type="radio" id="gender" value="male" bind:group={fields.gender} />
+    Male
+    <input type="radio" id="gender" value="female" bind:group={fields.gender} />
+    Female
     <div class="error">{errors.gender}</div>
   </div>
+  <div class="form-field">
+    <label for="phone-number">phone number:</label>
+    <input type="text" id="phone-number" bind:value={fields.phoneNumber} />
+    <div class="error">{errors.phoneNumber}</div>
+  </div>
+  <div class="form-field">
+    <label for="email">email:</label>
+    <input type="text" id="email" bind:value={fields.email} />
+    <div class="error">{errors.email}</div>
+  </div>
+  <div class="form-field">
+    <label for="nationality">Nationality:</label>
+    <select id="nationality" bind:value={fields.nationality}>
+      {#each $Nationalities as { code, name }}
+        <option value={code}>{name}</option>
+      {/each}
+    </select>
+    <div class="error">{errors.nationality}</div>
+  </div>
+
   <Button type={"secondary"}>Submit</Button>
 </form>
 
 <style>
   form {
-    padding: 20px;
+    padding: 25px 40px;
     border-radius: 10px;
-    width: 40%;
+    width: 30%;
     margin: 5% auto;
     background: #fff;
-    text-align: center;
+    text-align: left;
   }
 
   .form-field {
     margin: 18px auto;
   }
 
-  input {
+  input[type="text"] {
+    width: 60%;
+    border: 0;
+    border-radius: 6px;
+    padding: 8px 12px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+    outline: none;
+  }
+
+  input[type="date"] {
+    width: 60%;
+    border: 0;
+    border-radius: 6px;
+    padding: 8px 12px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+    outline: none;
+  }
+
+  select {
     width: 60%;
     border: 0;
     border-radius: 6px;

@@ -3,7 +3,7 @@
   import Header from "../lib/components/Header.svelte";
   import Footer from "../lib/components/Footer.svelte";
   import Tabs from "../lib/components/Tabs.svelte";
-  import Passengers from "./Passengers.svelte";
+  import Passengers from "../lib/components/passengers/Passengers.svelte";
 
   let tabs = ["Passengers", "Flights", "Airports"];
   let activeTab = "Passengers";

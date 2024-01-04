@@ -1,6 +1,6 @@
 <script>
-  import PassengersStore from "../../stores/PassengersStore";
-  import Button from "./Button.svelte";
+  import PassengersStore from "../../../stores/PassengersStore";
+  import Button from "../../shared/Button.svelte";
   export let card = "plus";
 
   const handleDelete = (id) => {
@@ -14,8 +14,8 @@
   <div class="card">
     <div>
       <h3>Passenger {card.id}</h3>
-      <p><b>full name:</b> {card.first_name} {card.last_name}</p>
-      <p><b>date of birth:</b> {card.date_of_birth}</p>
+      <p><b>full name:</b> {card.firstName} {card.lastName}</p>
+      <p><b>date of birth:</b> {card.dateOfBirth} <b>gender:</b> {card.gender}</p>
     </div>
     <div style="text-align: right">
       <Button on:click={() => handleDelete(card.id)}>x</Button>
@@ -24,7 +24,6 @@
 {:else}
   <div on:click class="card plus-card">
     <p>+</p>
-    <p></p>
   </div>
 {/if}
 
