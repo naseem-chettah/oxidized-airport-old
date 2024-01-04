@@ -31,11 +31,4 @@
     max-width: 960px;
     margin: 40px auto;
   }
-
-  .shadow {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.2);
-  }
 </style>
