@@ -2,6 +2,7 @@
   import PassengersStore from "../../../stores/PassengersStore";
   import Button from "../../shared/Button.svelte";
   export let card = "plus";
+  let showMore = false;
 
   const handleDelete = (id) => {
     PassengersStore.update((currentPassengers) => {
@@ -11,15 +12,54 @@
 </script>
 
 {#if card != "plus"}
-  <div class="card">
-    <div>
-      <h3>{card.firstName} {card.lastName}</h3>
-      <p><b>date of birth:</b> {card.dateOfBirth} <b>gender:</b> {card.gender}</p>
+  {#if !showMore}
+    <div
+      class="card"
+      on:click={() => {
+        showMore = !showMore;
+      }}
+    >
+      <div>
+        <h3>{card.firstName} {card.lastName}</h3>
+        <p>
+          <b>passport number:</b>
+          {card.passportNumber}
+        </p>
+      </div>
+      <div style="text-align: right">
+        <Button on:click={() => handleDelete(card.id)}>x</Button>
+      </div>
     </div>
-    <div style="text-align: right">
-      <Button on:click={() => handleDelete(card.id)}>x</Button>
+  {:else}
+    <div
+      class="card"
+      on:click={() => {
+        showMore = !showMore;
+      }}
+    >
+      <div>
+        <h3>{card.firstName} {card.lastName}</h3>
+        <p>
+          <b>date of birth:</b>
+          {card.dateOfBirth} <br>
+          <b>gender:</b>
+          {card.gender} <br>
+          <b>phone number:</b>
+          {card.phoneNumber} <br>
+          <b>email:</b>
+          {card.email} <br>
+          <b>nationality:</b>
+          {card.nationality} <br>
+        <p>
+          <b>passport number:</b>
+          {card.passportNumber}
+        </p>
+      </div>
+      <div style="text-align: right">
+        <Button on:click={() => handleDelete(card.id)}>x</Button>
+      </div>
     </div>
-  </div>
+  {/if}
 {:else}
   <div on:click class="card plus-card">
     <p>+</p>
@@ -34,6 +74,7 @@
     transition: 0.3s ease;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
   }
 
   .plus-card {
@@ -47,7 +88,6 @@
   .plus-card:hover {
     color: white;
     background: #d91b42;
-    cursor: pointer;
   }
 
   h3 {

@@ -7,7 +7,7 @@ const PassengersStore = writable([
     lastName: "ossidian",
     dateOfBirth: "2003-12-31",
     gender: "male",
-    phoneNubmer: "+213559352980",
+    phoneNumber: "+213559352980",
     email: "setheris@tuta.io",
     nationality: "DZ",
     passportNumber: "1101",
