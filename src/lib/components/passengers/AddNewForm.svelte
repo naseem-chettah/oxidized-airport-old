@@ -109,6 +109,11 @@
     </select>
     <div class="error">{errors.nationality}</div>
   </div>
+  <div class="form-field">
+    <label for="passport-number">passport number:</label>
+    <input type="text" id="passport-number" bind:value={fields.passportNumber} />
+    <div class="error">{errors.passportNumber}</div>
+  </div>
 
   <Button type={"secondary"}>Submit</Button>
 </form>
@@ -116,6 +121,7 @@
 <style>
   form {
     padding: 25px 40px;
+    padding-top: 10px;
     border-radius: 10px;
     width: 30%;
     margin: 5% auto;
